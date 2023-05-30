@@ -39,7 +39,8 @@ class Statusflow extends Model
         $result = DB::table('statusflows')
             ->select($fieldSelect)
             ->join('statusflow_details', 'statusflows.id', 'statusflow_details.statusflow_id')
-            ->where('statusflows.code', $statusflowCode);
+            ->where('statusflows.code', $statusflowCode)
+            ->where('statusflow_details.row_active', 1);
 
         if ($status) {
 
@@ -49,7 +50,7 @@ class Statusflow extends Model
             });
         }
 
-        return $result->get();
+        return $result->orderBy('statusflow_details.row_order', 'ASC')->get();
     }
 
     /**
@@ -64,7 +65,8 @@ class Statusflow extends Model
         $result = DB::table('statusflows')
             ->select($fieldSelect)
             ->join('statusflow_details', 'statusflows.id', 'statusflow_details.statusflow_id')
-            ->where('statusflows.code', $statusflowCode);
+            ->where('statusflows.code', $statusflowCode)
+            ->where('statusflow_details.row_active', 1);
         
         if ($currentStatus) {
 

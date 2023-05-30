@@ -15,7 +15,7 @@ class StatusflowDetail extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'statusflow_id', 'current_status', 'next_status', 'level', 'description'
+        'statusflow_id', 'current_status', 'next_status', 'level', 'description', 'row_order', 'row_active'
     ];
 
     /**

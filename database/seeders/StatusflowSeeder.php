@@ -25,6 +25,8 @@ class StatusflowSeeder extends Seeder
                         'current_status' => null,
                         'next_status' => 'pending',
                         'level' => 1,
+                        'row_active' => 1,
+                        'row_order' => 1,
                         'description' => null,
                         'created_at' => Carbon::now()
                     ],
@@ -32,6 +34,8 @@ class StatusflowSeeder extends Seeder
                         'current_status' => 'pending',
                         'next_status' => 'cancel',
                         'level' => 2,
+                        'row_active' => 1,
+                        'row_order' => 1,
                         'description' => null,
                         'created_at' => Carbon::now()
                     ],
@@ -39,6 +43,8 @@ class StatusflowSeeder extends Seeder
                         'current_status' => 'pending',
                         'next_status' => 'process',
                         'level' => 2,
+                        'row_active' => 1,
+                        'row_order' => 2,
                         'description' => null,
                         'created_at' => Carbon::now()
                     ],
@@ -46,6 +52,8 @@ class StatusflowSeeder extends Seeder
                         'current_status' => 'process',
                         'next_status' => 'delivery',
                         'level' => 3,
+                        'row_active' => 1,
+                        'row_order' => 1,
                         'description' => null,
                         'created_at' => Carbon::now()
                     ],
@@ -53,6 +61,8 @@ class StatusflowSeeder extends Seeder
                         'current_status' => 'process',
                         'next_status' => 'cancel',
                         'level' => 3,
+                        'row_active' => 1,
+                        'row_order' => 2,
                         'description' => null,
                         'created_at' => Carbon::now()
                     ],
@@ -60,6 +70,8 @@ class StatusflowSeeder extends Seeder
                         'current_status' => 'delivery',
                         'next_status' => 'done',
                         'level' => 4,
+                        'row_active' => 1,
+                        'row_order' => 1,
                         'description' => null,
                         'created_at' => Carbon::now()
                     ],

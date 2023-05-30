@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('next_status');
             $table->integer('level')->default(1);
             $table->string('description')->nullable();
+            $table->tinyInteger('row_order')->nullable()->default(1);
+            $table->tinyInteger('row_active')->default(1);
             $table->timestamps();
 
             $table->unique(['current_status', 'next_status', 'level'], 'status_matcher_unique');
