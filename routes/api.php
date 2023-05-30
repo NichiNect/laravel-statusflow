@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Statusflow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StatusflowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/get-next-status/{current_status}', [StatusflowController::class, 'getNextStatus']);
+Route::post('/check-is-allowed', [StatusflowController::class, 'checkIsAllowedChangeStatus']);

@@ -17,4 +17,12 @@ class StatusflowDetail extends Model
     protected $fillable = [
         'statusflow_id', 'current_status', 'next_status', 'level', 'description'
     ];
+
+    /**
+     * * Relation to `Statusflow` model
+     */
+    public function statusflow()
+    {
+        return $this->belongsTo(Statusflow::class, 'statusflow_id', 'id');
+    }
 }

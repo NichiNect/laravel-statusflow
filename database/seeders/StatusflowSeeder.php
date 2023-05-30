@@ -70,7 +70,6 @@ class StatusflowSeeder extends Seeder
 
         foreach ($data as $key => $one) {
 
-            info($one);
             $statusflow = Statusflow::create([
                 'code' => $one['code'],
                 'name' => $one['name'],
