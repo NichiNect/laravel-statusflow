@@ -3,6 +3,7 @@
 use App\Models\Statusflow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\StatusflowController;
 
 /*
@@ -22,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/get-next-status/{current_status}', [StatusflowController::class, 'getNextStatus']);
 Route::post('/check-is-allowed', [StatusflowController::class, 'checkIsAllowedChangeStatus']);
+
+Route::apiResource('/deliveries', DeliveryController::class);
