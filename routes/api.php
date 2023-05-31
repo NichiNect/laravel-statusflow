@@ -24,4 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/get-next-status/{current_status}', [StatusflowController::class, 'getNextStatus']);
 Route::post('/check-is-allowed', [StatusflowController::class, 'checkIsAllowedChangeStatus']);
 
+// * Delivery
 Route::apiResource('/deliveries', DeliveryController::class);
+Route::get('/deliveries/get-next-status/{id}', [DeliveryController::class, 'getNextStatus']);
+Route::post('/deliveries/update-status', [DeliveryController::class, 'updateStatus']);

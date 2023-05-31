@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Delivery;
+use App\Models\Statusflow;
 use App\Models\DeliveryItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -289,6 +291,114 @@ class DeliveryController extends Controller
         return response([
             'message' => "Success",
             'data' => 1
+        ]);
+    }
+
+    /**
+     * Get next status the specified resource from statusflow mapping
+     */
+    public function getNextStatus(string $id)
+    {
+        $delivery = Delivery::findOrFail($id);
+
+        $statusflow = new Statusflow();
+
+        $result = $statusflow->getNextStatus('DELIVERY', $delivery->status);
+
+        return response([
+            'message' => "Success",
+            'data' => $result
+        ]);
+    }
+
+    /**
+     * Update status the specified resource in storage.
+     */
+    public function updateStatus(Request $request)
+    {
+        /**
+         * * Validation Request
+         */
+        $validate = Validator::make($request->all(), [
+            'delivery_id' => 'required',
+            'status' => 'required|string',
+        ]);
+
+        if ($validate->fails()) {
+            return response()->json([
+                'message' => "Error: unprocessable entity, validation error!",
+                'errors' => $validate->errors(),
+            ], 422);
+        }
+
+        $statusData = Delivery::getStatusEnum(strtoupper($request->status));
+
+        if (!$statusData) {
+            return response()->json([
+                'message' => 'Error: unprocessable entity, validation error!',
+                'errors' => [
+                    'status' => ['Status is not match in our records']
+                ]
+            ], 422);
+        }
+
+        $delivery = Delivery::with('delivery_items')->find($request->delivery_id);
+
+        if (!$delivery) {
+            return response()->json([
+                'message' => 'Error: unprocessable entity, validation error!',
+                'errors' => [
+                    'delivery_id' => ['Delivery data not found']
+                ]
+            ], 422);
+        }
+
+        $statusflowModel = new Statusflow();
+
+        $checkIsAllowedChangeStatus = $statusflowModel->isAllowedChangeStatus('DELIVERY', $delivery->status, $statusData);
+
+        if ($checkIsAllowedChangeStatus['valid'] == false) {
+            return response()->json([
+                'message' => 'Error: unprocessable entity, validation error!',
+                'errors' => [
+                    'status' => ['This status is not allowed to update this delivery']
+                ]
+            ], 422);
+        }
+
+        switch ($statusData) {
+            case Delivery::getStatusEnum('DELIVERING'): {
+
+                // * Update delivered at
+                $delivery->delivered_at = Carbon::now();
+            } break;
+            case Delivery::getStatusEnum('DONE'): {
+
+                // * Update received at
+                $delivery->received_at = Carbon::now();
+            } break;
+        }
+
+        /**
+         * * Update Status
+         */
+        $delivery->status = $statusData;
+
+        try {
+            $delivery->save();
+        } catch (\Throwable $th) {
+            info($th);
+            DB::rollback();
+            return response([
+                'message' => "Error: failed to update status delivery",
+            ], 500);
+        }
+
+        DB::commit();
+
+        return response([
+            'message' => 'Success',
+            'data' => $delivery
         ]);
     }
 }

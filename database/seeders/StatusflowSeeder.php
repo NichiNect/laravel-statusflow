@@ -50,7 +50,7 @@ class StatusflowSeeder extends Seeder
                     ],
                     [
                         'current_status' => 'process',
-                        'next_status' => 'delivery',
+                        'next_status' => 'delivering',
                         'level' => 3,
                         'row_active' => 1,
                         'row_order' => 1,
@@ -67,7 +67,7 @@ class StatusflowSeeder extends Seeder
                         'created_at' => Carbon::now()
                     ],
                     [
-                        'current_status' => 'delivery',
+                        'current_status' => 'delivering',
                         'next_status' => 'done',
                         'level' => 4,
                         'row_active' => 1,
