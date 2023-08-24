@@ -1,0 +1,350 @@
+{
+	"info": {
+		"_postman_id": "f2c1ce60-65ac-4d7f-be3e-194e1f729c21",
+		"name": "Statusflow Mapping",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24190139"
+	},
+	"item": [
+		{
+			"name": "Delivery",
+			"item": [
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/deliveries",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"deliveries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/deliveries/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"deliveries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Next Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/deliveries/get-next-status/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"deliveries",
+								"get-next-status",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "sender_name",
+									"value": "Urahara Kisuke",
+									"type": "text"
+								},
+								{
+									"key": "sender_phone",
+									"value": "088888888888",
+									"type": "text"
+								},
+								{
+									"key": "receiver_name",
+									"value": "Kuchiki Byakuya",
+									"type": "text"
+								},
+								{
+									"key": "receiver_phone",
+									"value": "089999999999",
+									"type": "text"
+								},
+								{
+									"key": "receiver_address",
+									"value": "Kantor Divisi 6, Kuchiki",
+									"type": "text"
+								},
+								{
+									"key": "delivery_fee",
+									"value": "120000",
+									"type": "text"
+								},
+								{
+									"key": "sprinter",
+									"value": "Yoruichi S",
+									"type": "text"
+								},
+								{
+									"key": "note",
+									"value": "Pengiriman data penting",
+									"type": "text"
+								},
+								{
+									"key": "delivery_items[0][item_name]",
+									"value": "Flashdisk Research Hollowfikasi",
+									"type": "text"
+								},
+								{
+									"key": "delivery_items[0][quantity]",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "delivery_items[0][note]",
+									"value": "Flashdisk berisi data penting",
+									"description": "nullable",
+									"type": "text"
+								},
+								{
+									"key": "delivery_items[1][item_name]",
+									"value": "Contoh Zanpakutou Netral",
+									"type": "text"
+								},
+								{
+									"key": "delivery_items[1][quantity]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "delivery_items[1][note]",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/deliveries",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"deliveries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "sender_name",
+									"value": "Urahara Kisuke",
+									"type": "text"
+								},
+								{
+									"key": "sender_phone",
+									"value": "088888888888",
+									"type": "text"
+								},
+								{
+									"key": "receiver_name",
+									"value": "Kuchiki Byakuya",
+									"type": "text"
+								},
+								{
+									"key": "receiver_phone",
+									"value": "089999999999",
+									"type": "text"
+								},
+								{
+									"key": "receiver_address",
+									"value": "Kantor Divisi 6, Kuchiki",
+									"type": "text"
+								},
+								{
+									"key": "delivery_fee",
+									"value": "100000",
+									"type": "text"
+								},
+								{
+									"key": "sprinter",
+									"value": "Yoruichi S",
+									"type": "text"
+								},
+								{
+									"key": "note",
+									"value": "Pengiriman data penting",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/deliveries/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"deliveries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/deliveries/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"deliveries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "delivery_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "delivering",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/deliveries/update-status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"deliveries",
+								"update-status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Check is Allowed Change Status",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "current_status",
+							"value": "process",
+							"type": "text"
+						},
+						{
+							"key": "next_status",
+							"value": "done",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/check-is-allowed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"check-is-allowed"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "null",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Next Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/get-next-status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"get-next-status"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
